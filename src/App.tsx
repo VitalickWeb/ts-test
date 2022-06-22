@@ -22,7 +22,7 @@ function App() {
             <Accordion titleValue={'Menu'} collapsed={true}/>
             <Accordion titleValue={'Users'} collapsed={false}/>
             Article 2;
-            <Rating value={4}/>
+            <Rating value={0}/>
 
             <div>
                 <OnOff switch={flag}/>

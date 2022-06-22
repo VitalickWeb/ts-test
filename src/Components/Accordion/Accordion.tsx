@@ -7,13 +7,13 @@ type AccordionPropsType = {
 
 export function Accordion(props: AccordionPropsType) {
 
-    let [collapsed, setCollapsed] = useState(false)
+    const [collapsed2, setCollapsed2] = useState(false)
 
     return (
         <div>
             <AccordionTitle title={props.titleValue}/>
-            <button onClick={()=> setCollapsed(collapsed ? false : true)}>toggle</button>
-            {!collapsed && <AccordionBody/>}
+            <button onClick={()=> setCollapsed2(!collapsed2)}>toggle</button>
+            {!collapsed2 && <AccordionBody/>}
         </div>
     );
 }
