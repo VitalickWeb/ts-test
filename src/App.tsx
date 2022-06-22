@@ -1,65 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Accordion} from "./Components/Accordion/Accordion";
+import {PageTitle} from "./Components/PageTitle/PageTitle";
+import {Rating} from "./Components/Rating/Rating";
+import {OnOff} from "./Components/OnOff/OnOff";
 
 function App() {
-    console.log('App rendering');
+    let flag = true;
     return (
         <div className="App">
-            <Rating/>
-            <Accordion/>
-        </div>
-    );
-}
+            <PageTitle title={'This is App component'}/>
+            <PageTitle title={'My friends'}/>
 
-function Rating() {
-    console.log('Raiting rendering');
-    return (
-        <div>
-            <Stars/>
-            <Stars/>
-            <Stars/>
-            <Stars/>
-            <Stars/>
-        </div>
-    );
-}
+            Article 1;
+            <Rating value={0}/>
+            <Rating value={1}/>
+            <Rating value={2}/>
+            <Rating value={3}/>
+            <Rating value={4}/>
+            <Rating value={5}/>
+            <Accordion titleValue={'Menu'} collapsed={true}/>
+            <Accordion titleValue={'Users'} collapsed={false}/>
+            Article 2;
+            <Rating value={4}/>
 
-function Stars() {
-    console.log('Stars rendering');
-    return (
-        <div>
-            <div>star *</div>
-        </div>
-    );
-}
-
-function Accordion() {
-    console.log('Accordion rendering');
-    return (
-        <div>
-            <AccordionTitle/>
-            <AccordionBody/>
-        </div>
-    );
-}
-
-function AccordionTitle() {
-    console.log('AccordionTitle rendering');
-    return (
-        <div>
-            <h3>Menu</h3>
-        </div>
-    );
-}
-
-function AccordionBody() {
-    console.log('AccordionBody rendering');
-    return (
-        <div>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            <div>
+                <OnOff switch={flag}/>
+            </div>
         </div>
     );
 }
