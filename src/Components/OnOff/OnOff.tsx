@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import React from "react";
 import st from "./OnOff.module.css"
 
 type SwitcherPropsType = {
     switch: boolean
+    switchValue: (typeSwitch1: boolean) => void
 }
 
 export const OnOff = (props: SwitcherPropsType) => {
-    const [def, setDef] = useState(props.switch)
 
-    const onHandler = (value: boolean) => {
-        setDef(value)
+    const onClickHandler = (typeSwitch1: boolean) => {
+        props.switchValue(typeSwitch1)
     }
 
     return (
       <div className={st.blockSwitch}>
-          <button className={def ? st.green : st.white} onClick={()=>onHandler(true)}>On</button>
-          <button className={!def ? st.red : st.white} onClick={()=>onHandler(false)}>Off</button>
-          <div className={def ? st.circleGreen : st.circleRed}></div>
+          <div className={props.switch ? st.green : st.white} onClick={ () => onClickHandler( true)}>On</div>
+          <div className={!props.switch ? st.red : st.white} onClick={ ()=> onClickHandler(false)}>Off</div>
+          <div className={props.switch ? st.circleGreen : st.circleRed}></div>
       </div>
     );
 }

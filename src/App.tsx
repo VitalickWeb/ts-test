@@ -12,6 +12,12 @@ function App() {
         setStarValue(typeStar)
     }
 
+    const [switchValue, setSwitchValue] = useState<boolean>(false)
+
+    const switchOnClickHandler = (typeSwitch: boolean) => {
+        setSwitchValue(typeSwitch)
+    }
+
     return (
         <div className="App">
             <PageTitle title={'This is App component'}/>
@@ -33,7 +39,8 @@ function App() {
 
             <div>
                 <OnOff
-                    switch={true}
+                    switch={switchValue}
+                    switchValue={switchOnClickHandler}
                 />
             </div>
         </div>
