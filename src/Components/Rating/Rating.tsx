@@ -29,7 +29,7 @@ type SelectedPropsType = {
 export const Stars = (props: SelectedPropsType) => {
     return (
         <span onClick={() => {
-            props.setStar(props.stars)
+            props.setStar (props.stars)
         }}>
             {props.selected ? <b>star </b> : ' star'}
         </span>

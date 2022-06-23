@@ -11,7 +11,7 @@ export function Accordion(props: AccordionPropsType) {
     const [collapsed2, setCollapsed2] = useState(true)
 
     const clickTitle = (title: boolean) => {
-        setCollapsed2(title)
+        setCollapsed2(collapsed2 ? title : !title)
     }
 
     return (
@@ -27,7 +27,7 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string;
-    clickTitle: (title: boolean) => void
+    clickTitle: (title: true | false) => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
@@ -36,7 +36,7 @@ function AccordionTitle(props: AccordionTitlePropsType) {
     }
 
     return (
-        <h3 onClick={() => onClickTitleHandler( false)}>{props.title}</h3>
+        <h3 onClick={() => onClickTitleHandler(false)}>{props.title}</h3>
     );
 }
 
