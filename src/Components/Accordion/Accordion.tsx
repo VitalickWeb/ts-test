@@ -1,18 +1,25 @@
 import React, {useState} from "react";
 
-type AccordionPropsType = {
+
+export type AccordionPropsType = {
     titleValue: string;
     collapsed: boolean;
 }
 
 export function Accordion(props: AccordionPropsType) {
 
-    const [collapsed2, setCollapsed2] = useState(false)
+    const [collapsed2, setCollapsed2] = useState(true)
+
+    const clickTitle = (title: boolean) => {
+        setCollapsed2(title)
+    }
 
     return (
         <div>
-            <AccordionTitle title={props.titleValue}/>
-            <button onClick={()=> setCollapsed2(!collapsed2)}>toggle</button>
+            <AccordionTitle
+                title={props.titleValue}
+                clickTitle={clickTitle}
+            />
             {!collapsed2 && <AccordionBody/>}
         </div>
     );
@@ -20,11 +27,16 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string;
+    clickTitle: (title: boolean) => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
+    const onClickTitleHandler = (title: boolean) => {
+        props.clickTitle(title)
+    }
+
     return (
-        <h3>{props.title}</h3>
+        <h3 onClick={() => onClickTitleHandler( false)}>{props.title}</h3>
     );
 }
 

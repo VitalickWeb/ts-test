@@ -20,9 +20,11 @@ function App() {
             <Rating value={4}/>
             <Rating value={5}/>
             <Accordion titleValue={'Menu'} collapsed={true}/>
-            <Accordion titleValue={'Users'} collapsed={false}/>
+            <Accordion titleValue={'Users'} collapsed={true}/>
             Article 2;
-            <Rating value={0}/>
+            <Rating
+                value={0}
+            />
 
             <div>
                 <OnOff switch={flag}/>
