@@ -29,7 +29,7 @@ function App() {
             />
             <Accordion
                 titleValue={'Users'}
-                collapsed={true}
+                collapsed={false}
             />
 
             <Rating

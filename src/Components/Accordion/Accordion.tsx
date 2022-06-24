@@ -27,7 +27,7 @@ export function Accordion(props: AccordionPropsType) {
 
 type AccordionTitlePropsType = {
     title: string;
-    clickTitle: (title: true | false) => void
+    clickTitle: (title: boolean) => void
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
