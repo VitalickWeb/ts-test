@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Rating } from './Rating';
+import {Rating, RatingStarType} from './Rating';
 
 
 export default {
@@ -14,4 +14,7 @@ export const Rating2 = () => <Rating starValue={2} starClick={x=>x}/>;
 export const Rating3 = () => <Rating starValue={3} starClick={x=>x}/>;
 export const Rating4 = () => <Rating starValue={4} starClick={x=>x}/>;
 export const Rating5 = () => <Rating starValue={5} starClick={x=>x}/>;
-export const Rating = () => <Rating />
+export const RatingChanging = () => {
+    const [rating, setRating] = useState<RatingStarType>(0);
+    return <Rating starValue={rating} starClick={setRating}/>
+}
