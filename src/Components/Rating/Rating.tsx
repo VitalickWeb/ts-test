@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export type RatingStarType = 0 | 1 | 2 | 3 | 4 | 5
 
 type RatingPropsType = {
@@ -28,7 +29,6 @@ type SelectedPropsType = {
     selected: boolean
     stars: RatingStarType
     onClickStar: (value: RatingStarType) => void
-
 }
 
 export const Stars = (props: SelectedPropsType) => {
