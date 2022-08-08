@@ -6,14 +6,18 @@ import {Rating, RatingStarType} from "./Components/Rating/Rating";
 import {OnOff} from "./Components/OnOff/OnOff";
 
 function App() {
-    const [starValue, setStarValue] = useState<RatingStarType>(0)
+    const [collapsed2, setCollapsed2] = useState<boolean>(false)
+    const clickTitle = (title: boolean) => {
+        setCollapsed2(collapsed2 ? title : !title)
+        console.log(collapsed2)
+    }
 
+    const [starValue, setStarValue] = useState<RatingStarType>(0)
     const starValueHandler = (typeStar: RatingStarType) => {
         setStarValue(typeStar)
     }
 
     const [switchValue, setSwitchValue] = useState<boolean>(false)
-
     const switchOnClickHandler = (typeSwitch: boolean) => {
         setSwitchValue(typeSwitch)
     }
@@ -25,11 +29,13 @@ function App() {
 
             <Accordion
                 titleValue={'Menu'}
-                collapsed={true}
+                collapsed={collapsed2}
+                clickTitle={clickTitle}
             />
             <Accordion
                 titleValue={'Users'}
-                collapsed={false}
+                collapsed={collapsed2}
+                clickTitle={clickTitle}
             />
 
             <Rating
