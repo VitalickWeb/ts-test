@@ -1,0 +1,68 @@
+
+/*.selectDropDown {*/
+/*    padding-left: 10px;*/
+/*    padding-top: 10px;*/
+/*}*/
+
+/*.selectBlock {*/
+/*    max-width: 70px;*/
+/*    text-align: center;*/
+/*    list-style-type: none;*/
+/*    border-right: 2px solid #3c65bf;*/
+/*    border-top: 2px solid #3c65bf;*/
+/*    border-left: 2px solid #3c65bf;*/
+/*    padding-bottom: 2px;*/
+/*    cursor: pointer;*/
+/*    transition: 1s;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*.selectBlock:first-child {*/
+/*    border-radius: 3px;*/
+/*    padding: 0;*/
+/*    border-right: 2px solid rgba(60, 156, 191, 0.8);*/
+/*    border-top: 2px solid rgba(60, 156, 191, 0.8);*/
+/*    border-left: 2px solid rgba(60, 156, 191, 0.8);*/
+/*}*/
+/*.selectBlock:first-child:hover {*/
+/*    color: #333;*/
+/*    cursor: default;*/
+/*    background-color: white;*/
+/*    box-sizing: border-box;*/
+/*    border-radius: 3px;*/
+/*    padding: 0;*/
+/*    border-right: 2px solid rgba(60, 156, 191, 0.8);*/
+/*    border-top: 2px solid rgba(60, 156, 191, 0.8);*/
+/*    border-left: 2px solid rgba(60, 156, 191, 0.8);*/
+/*}*/
+/*.selectBlock:last-child {*/
+/*    border-bottom: 2px solid #3c65bf;*/
+/*}*/
+/*.selectBlock:hover {*/
+/*    max-width: 70px;*/
+/*    text-align: center;*/
+/*    list-style-type: none;*/
+/*    border-right: 2px solid #3c65bf;*/
+/*    border-top: 2px solid #3c65bf;*/
+/*    border-left: 2px solid #3c65bf;*/
+/*    padding-bottom: 2px;*/
+/*    cursor: pointer;*/
+/*    background-color: lightslategrey;*/
+/*    transition: 1s;*/
+/*    box-sizing: border-box;*/
+/*    color: snow;*/
+/*}*/
+/*.selectBlock:last-child:hover {*/
+/*    border-bottom: 2px solid rgba(60, 101, 191, 0.72);*/
+/*}*/
+
+/*.styleBorder {*/
+/*    margin-top: 0;*/
+/*    margin-bottom: 0;*/
+/*    padding-left: 0;*/
+/*}*/
+
+/*.selectButton {*/
+/*    background-color: rgba(60, 101, 191, 0.34);*/
+/*    border: 2px solid rgba(60, 101, 191, 0.49);*/
+/*}*/

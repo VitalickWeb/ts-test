@@ -1,54 +1,64 @@
 import React, {useState} from 'react';
-import './App.css';
 import {Accordion} from "./Components/Accordion/Accordion";
 import {PageTitle} from "./Components/PageTitle/PageTitle";
-import {Rating, RatingStarType} from "./Components/Rating/Rating";
+import {Rating} from "./Components/Raiting/Rating";
 import {OnOff} from "./Components/OnOff/OnOff";
 
+export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
+
 function App() {
-    const [collapsed2, setCollapsed2] = useState<boolean>(false)
-    const clickTitle = (title: boolean) => {
-        setCollapsed2(collapsed2 ? title : !title)
-        console.log(collapsed2)
-    }
 
-    const [starValue, setStarValue] = useState<RatingStarType>(0)
-    const starValueHandler = (typeStar: RatingStarType) => {
-        setStarValue(typeStar)
-    }
-
-    const [switchValue, setSwitchValue] = useState<boolean>(false)
-    const switchOnClickHandler = (typeSwitch: boolean) => {
-        setSwitchValue(typeSwitch)
-    }
+    console.log()
+    //контролируемый аккордеон
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+    //контролируемый rating
+    const [starValue, setStarValue] = useState<ChoiceNumber>(0)
+    //контролируемый OnOff
+    const [onOff, setOnOff] = useState(false)
 
     return (
-        <div className="App">
-            <PageTitle title={'This is App component'}/>
-            <PageTitle title={'My friends'}/>
+        <div>
+            <PageTitle />
 
             <Accordion
-                titleValue={'Menu'}
-                collapsed={collapsed2}
-                clickTitle={clickTitle}
+                title="switch-1"
+                setAccordionCollapsed={() => setAccordionCollapsed(!accordionCollapsed)}
+                setCollapsed={accordionCollapsed}
             />
-            <Accordion
-                titleValue={'Users'}
-                collapsed={collapsed2}
-                clickTitle={clickTitle}
-            />
-
             <Rating
-                starValue={starValue}
-                starClick={starValueHandler}
+                setStarValue={(starValue: ChoiceNumber) => setStarValue(starValue)}
+                onClickStar={starValue}
+            />
+            <Accordion
+                title="switch-2"
+                setAccordionCollapsed={() => setAccordionCollapsed(!accordionCollapsed)}
+                setCollapsed={accordionCollapsed}
+            />
+            <Rating
+                setStarValue={(starValue: ChoiceNumber) => setStarValue(starValue)}
+                onClickStar={starValue}
             />
 
-            <div>
-                <OnOff
-                    switch={switchValue}
-                    switchValue={switchOnClickHandler}
-                />
-            </div>
+            <OnOff
+                setOnOff={ (onOff: boolean) => setOnOff(onOff)}
+                onClickOnOff={onOff}
+            />
+
+            {/*<UncontrolledOnOff */}
+
+            {/*/>*/}
+            {/*<UncontrolledAccordion*/}
+            {/*    title="click-1"*/}
+            {/*/>*/}
+            {/*<UncontrolledRating*/}
+
+            {/*/>*/}
+            {/*<UncontrolledAccordion*/}
+            {/*    title="click-2"*/}
+            {/*/>*/}
+            {/*<UncontrolledRating*/}
+
+            {/*/>*/}
         </div>
     );
 }

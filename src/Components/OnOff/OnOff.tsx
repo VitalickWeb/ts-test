@@ -1,22 +1,35 @@
-import React from "react";
-import st from "./OnOff.module.css"
+import React from 'react';
+import st from "../OnOff/OnOff.module.css";
 
-type SwitcherPropsType = {
-    switch: boolean
-    switchValue: (typeSwitch1: boolean) => void
+
+export type OnOffPropsType = {
+    setOnOff: (onOff: boolean) => void
+    onClickOnOff: boolean
 }
 
-export const OnOff = (props: SwitcherPropsType) => {
+export const OnOff = ({setOnOff, onClickOnOff}: OnOffPropsType) => {
 
-    const onClickHandler = (typeSwitch1: boolean) => {
-        props.switchValue(typeSwitch1)
+    const onClickOn = () => {
+        setOnOff(true)
     }
 
+    const onClickOff = () => {
+        setOnOff(false)
+    }
+
+    let colored1 = `${st.green}`
+    let colored2 = `${st.pink}`
+
     return (
-      <div className={st.blockSwitch}>
-          <div className={props.switch ? st.green : st.white} onClick={ () => onClickHandler( true)}>On</div>
-          <div className={!props.switch ? st.red : st.white} onClick={ ()=> onClickHandler(false)}>Off</div>
-          <div className={props.switch ? st.circleGreen : st.circleRed}></div>
-      </div>
+        <div className={st.boxSwitch}>
+            <div onClick={onClickOn} className={onClickOnOff ? colored1 : st.blockOn}>
+                <span>ON</span>
+            </div>
+            <div onClick={onClickOff} className={!onClickOnOff ? colored2 : st.blockOff}>
+                <span>OFF</span>
+            </div>
+            <div className={onClickOnOff ? st.circleOn : st.circleOff}></div>
+        </div>
     );
-}
+};
+

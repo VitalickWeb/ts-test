@@ -1,13 +1,11 @@
 import React from "react";
 
-type TitlePropsType = {
-    title: string
-}
 
-export const PageTitle = (props: TitlePropsType) => {
+export const PageTitle = () => {
+    console.log()
     return (
         <>
-            <h1>{props.title}</h1>
+            App: return all components
         </>
     );
 }
