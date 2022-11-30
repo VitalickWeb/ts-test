@@ -1,22 +1,19 @@
 import React, {useState} from 'react';
-import {Accordion} from "./Components/Accordion/Accordion";
+import {Accordion, ArrElementsPropsType} from "./Components/Accordion/Accordion";
 import {PageTitle} from "./Components/PageTitle/PageTitle";
 import {Rating} from "./Components/Raiting/Rating";
 import {OnOff} from "./Components/OnOff/OnOff";
-import {UncontrolledRating} from "./Components/UncontrolledRating/UncontrolledRating";
-import {UncontrolledAccordion} from "./Components/UncontrolledAccordion/UncontrolledAccordion";
-import {UncontrolledOnOff} from "./Components/UncontrolledOnOff/UncontrolledOnOff";
 import {v1} from "uuid";
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
 
 function App() {
 
-    const [arrElements, setArrElements] = useState([
+    const [arrElements, setArrElements] = useState<Array<ArrElementsPropsType>>([
         {id: v1(), name: "Vit"},
-        {id: v1(), name: "Vera"},
-        {id: v1(), name: "Liza"},
-        {id: v1(), name: "Yr"},
+        {id: v1(), name: "react"},
+        {id: v1(), name: "JS"},
+        {id: v1(), name: "CSS"},
     ])
 
     console.log()
@@ -32,7 +29,7 @@ function App() {
             <PageTitle />
 
             <Accordion
-                title="switch-1"
+                title="Menu"
                 setAccordionCollapsed={() => setAccordionCollapsed(!accordionCollapsed)}
                 setCollapsed={accordionCollapsed}
                 arrElements={arrElements}

@@ -31,26 +31,25 @@ collapsedMode.args = {
     ...callbacksProps,//добавляем деструктуризацию всегда с верху
     title: "click-1",
     setCollapsed: true,
-    color: "color"
+    color: "color",
+    arrElements: []
 }
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const collapseOpen = () => <Accordion title={"click-2"} setCollapsed={false} setAccordionCollapsed={callback} arrElements={[
     {id: v1(), name: "Vit"},
-    {id: v1(), name: "Vit"},
-    {id: v1(), name: "Liza"},
-    {id: v1(), name: "Yr"}
+    {id: v1(), name: "react"},
+    {id: v1(), name: "JS"},
+    {id: v1(), name: "CSS"}
 ]}/>
 
 //1) collapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
-// export const collapseOpenClose = () => {
-//     const [arrElements, setArrElements] = useState<ArrElementsPropsType[]>([
-//         {id: v1(), name: "Vit"},
-//         {id: v1(), name: "Vera"},
-//         {id: v1(), name: "Liza"},
-//         {id: v1(), name: "Yr"},
-//     ])
-//     const [collapsedOnOff, setCollapsedOnOff] = useState<boolean>(false)
-//     return <Accordion title={"click-1"} setAccordionCollapsed={() => setCollapsedOnOff(!collapsedOnOff)} setCollapsed={collapsedOnOff} arrElements={arrElements.map(el => {
-//        return <>{el.name}</>
-//     })}/>
-// }
+export const collapseOpenClose = () => {
+    const [collapsedOnOff, setCollapsedOnOff] = useState<boolean>(false)
+    const [arrElements, setArrElements] = useState<ArrElementsPropsType[]>([
+        {id: v1(), name: "Vit"},
+        {id: v1(), name: "react"},
+        {id: v1(), name: "JS"},
+        {id: v1(), name: "CSS"},
+    ])
+    return <Accordion title={"Menu"} setAccordionCollapsed={() => setCollapsedOnOff(!collapsedOnOff)} setCollapsed={collapsedOnOff} arrElements={arrElements}/>
+}
