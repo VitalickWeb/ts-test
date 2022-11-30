@@ -16,9 +16,10 @@ export type AccordionPropsType = {
     title: string
     color?: string
     arrElements: ArrElementsPropsType[]
+    onClickElem: (value: any) => void
 }
 
-export function Accordion({title, setAccordionCollapsed, setCollapsed, color, arrElements}: AccordionPropsType) {
+export function Accordion({title, setAccordionCollapsed, setCollapsed, color, arrElements, onClickElem}: AccordionPropsType) {
     console.log()
 
     return (
@@ -32,6 +33,7 @@ export function Accordion({title, setAccordionCollapsed, setCollapsed, color, ar
             <AccordionBody
                 setCollapsed={setCollapsed}
                 arrElements={arrElements}
+                onClickElem={onClickElem}
             />
 
         </div>

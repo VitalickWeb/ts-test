@@ -19,6 +19,7 @@ export default {
 } as ComponentMeta<typeof Accordion>;
 
 const callback = action("event closed or opened")
+const onClickCallback = action("what happening")
 
 const Template: Story<AccordionPropsType> = (args) => <Accordion {...args} />;
 const callbacksProps = {
@@ -32,7 +33,8 @@ collapsedMode.args = {
     title: "click-1",
     setCollapsed: true,
     color: "color",
-    arrElements: []
+    arrElements: [],
+    onClickElem: onClickCallback
 }
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const collapseOpen = () => <Accordion title={"click-2"} setCollapsed={false} setAccordionCollapsed={callback} arrElements={[
@@ -40,16 +42,22 @@ export const collapseOpen = () => <Accordion title={"click-2"} setCollapsed={fal
     {id: v1(), name: "react"},
     {id: v1(), name: "JS"},
     {id: v1(), name: "CSS"}
-]}/>
+]} onClickElem={onClickCallback}/>
 
 //1) collapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
 export const collapseOpenClose = () => {
     const [collapsedOnOff, setCollapsedOnOff] = useState<boolean>(false)
+
     const [arrElements, setArrElements] = useState<ArrElementsPropsType[]>([
         {id: v1(), name: "Vit"},
         {id: v1(), name: "react"},
         {id: v1(), name: "JS"},
         {id: v1(), name: "CSS"},
     ])
-    return <Accordion title={"Menu"} setAccordionCollapsed={() => setCollapsedOnOff(!collapsedOnOff)} setCollapsed={collapsedOnOff} arrElements={arrElements}/>
+    return <Accordion
+        title={"Menu"}
+        setAccordionCollapsed={() => setCollapsedOnOff(!collapsedOnOff)}
+        setCollapsed={collapsedOnOff} arrElements={arrElements}
+        onClickElem={onClickCallback}
+    />
 }

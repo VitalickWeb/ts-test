@@ -4,6 +4,7 @@ import {PageTitle} from "./Components/PageTitle/PageTitle";
 import {Rating} from "./Components/Raiting/Rating";
 import {OnOff} from "./Components/OnOff/OnOff";
 import {v1} from "uuid";
+import {Select} from "./Components/select/Select";
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
 
@@ -11,9 +12,9 @@ function App() {
 
     const [arrElements, setArrElements] = useState<Array<ArrElementsPropsType>>([
         {id: v1(), name: "Vit"},
-        {id: v1(), name: "react"},
-        {id: v1(), name: "JS"},
-        {id: v1(), name: "CSS"},
+        {id: v1(), name: "Vera"},
+        {id: v1(), name: "Dima"},
+        {id: v1(), name: "Many People"},
     ])
 
     console.log()
@@ -33,6 +34,7 @@ function App() {
                 setAccordionCollapsed={() => setAccordionCollapsed(!accordionCollapsed)}
                 setCollapsed={accordionCollapsed}
                 arrElements={arrElements}
+                onClickElem={() => setArrElements(arrElements)}
             />
             <Rating
                 setStarValue={(starValue: ChoiceNumber) => setStarValue(starValue)}
@@ -53,6 +55,9 @@ function App() {
                 onClickOnOff={onOff}
             />
 
+            <Select
+
+            />
 
             {/*<UncontrolledOnOff*/}
 
