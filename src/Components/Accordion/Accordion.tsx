@@ -2,13 +2,23 @@ import React, {useState} from "react";
 import {AccordionBody} from "./AccordionBody";
 import {AccordionTitle} from "./AccordionTitle";
 
-export type AccordionPropsType = {
-    setAccordionCollapsed: () => void
-    setCollapsed: boolean
-    title: string
+export type ArrElementsPropsType = {
+    id: string
+    name: string
 }
 
-export function Accordion({title, setAccordionCollapsed, setCollapsed}: AccordionPropsType) {
+export type AccordionPropsType = {
+    setAccordionCollapsed: () => void
+    /**
+     * demonstration of a collapsed block on click on a title click in the true position
+     */
+    setCollapsed: boolean
+    title: string
+    color?: string
+    arrElements: ArrElementsPropsType[]
+}
+
+export function Accordion({title, setAccordionCollapsed, setCollapsed, color, arrElements}: AccordionPropsType) {
     console.log()
 
     return (
@@ -16,10 +26,12 @@ export function Accordion({title, setAccordionCollapsed, setCollapsed}: Accordio
             <AccordionTitle
                 title={title}
                 setAccordionCollapsed={() => setAccordionCollapsed()}
+                color={color}
             />
 
             <AccordionBody
                 setCollapsed={setCollapsed}
+                arrElements={arrElements}
             />
 
         </div>

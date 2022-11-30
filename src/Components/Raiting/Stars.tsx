@@ -1,12 +1,12 @@
 import React from 'react';
 
-export type Stars = {
+export type StarsPropsType = {
     selectValue: boolean
     setStarValue: () => void
 
 }
 
-export const Stars = ({selectValue, setStarValue}: Stars) => {
+export const Stars = ({selectValue, setStarValue}: StarsPropsType) => {
     console.log()
     return (
         <span onClick={ () => {setStarValue()} }>

@@ -1,5 +1,99 @@
-import React from 'react'
+import React, {ChangeEvent, useRef, useState} from 'react';
 
+// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export default {
+    title: 'Components/input',
+    component: <input/>,
+    // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+    argTypes: {
+        backgroundColor: {
+            control: 'color'
+        },
+    },
+};
+
+export const UncontrolledInput = () => <input/>
+export const TrackValueOfUncontrolledInput = () => {
+    const [value, setValue] = useState("")
+
+    const changeInputElem = (e: ChangeEvent<HTMLInputElement>) => {
+        let actualValue = e.currentTarget.value
+        setValue(actualValue)
+    }
+
+    return <>
+        <input onChange={changeInputElem}/> - {value}
+    </>
+}
+
+//Hook useRef
+export const GetValueOfUncontrolledInput = () => {
+    const [getValue, setGetValue] = useState<string>("")
+
+    const inputRef = useRef<HTMLInputElement>(null)//создаем ссылку которую связываем с элементом
+
+    const save = () => {
+        let el = inputRef.current as HTMLInputElement//в коде обращаемся к ссылке и ее значению current
+        //и в этом current будет сидеть то на что ссылается этот ref
+        //таким образом в любом месте мы можем достучатся до input и взять из него value
+        setGetValue(el.value)
+    }
+
+    return <>
+        {/*ссылку useRef которую связываем с элементом*/}
+        <input ref={inputRef}/>
+        <button onClick={ save }>save</button> - actual value: {getValue}
+    </>
+}
+
+export const ControlledInput = () => {
+    const [inputValue, setInputValue] = useState<string>("")
+
+    const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.currentTarget.value)
+    }
+
+    return (
+        <>
+            <input type="text" value={inputValue} onChange={ changeInputValue }/> {inputValue}
+        </>
+    )
+}
+
+export const ControlledCheckbox = () => {
+    const [inputCheckbox, setInputCheckbox] = useState<boolean>(false)
+
+    const changeInputCheckbox = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputCheckbox(e.currentTarget.checked)
+    }
+
+    return (
+        <>
+            <input type="checkbox" checked={inputCheckbox} onChange={ changeInputCheckbox }/>
+        </>
+    )
+}
+
+export const ControlledSelect = () => {
+    const [inputSelect, setInputSelect] = useState<string | undefined>(undefined)
+
+    const changeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+        setInputSelect(e.currentTarget.value)
+    }
+    //событие onChange вешаем на select, поэтому в селекте e.currentTarget будет - select
+    //и у него берем .value
+    //Если опция поменялась то значение селекта будет значение опции которая выбрана
+    return (
+        <>
+            <select value={inputSelect} onChange={changeSelect}>
+                <option>select</option>
+                <option value={"1"}>React</option>
+                <option value={"2"}>Redux</option>
+                <option value={"3"}>Html</option>
+            </select>
+        </>
+    )
+}
 
 
 

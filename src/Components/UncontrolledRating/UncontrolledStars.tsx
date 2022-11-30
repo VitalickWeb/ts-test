@@ -1,10 +1,11 @@
 import React from "react";
+import {ChoiceNumberRating} from "./UncontrolledRating";
 
 
 export type StarPropsType = {
     selectValue: boolean
-    setValue: (value: 0 | 1 | 2 | 3 | 4 | 5) => void
-    value: 0 | 1 | 2 | 3 | 4 | 5
+    setValue: (value: ChoiceNumberRating) => void
+    value: ChoiceNumberRating
 }
 
 export const UncontrolledStars = ({ selectValue, setValue, value }: StarPropsType) => {
