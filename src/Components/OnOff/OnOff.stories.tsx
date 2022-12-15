@@ -15,11 +15,11 @@ export default {
 
 const callback = action("clicked on or off")
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const switchOn = () => <OnOff onClickOnOff={true} setOnOff={callback}/>
-export const switchOff = () => <OnOff onClickOnOff={false} setOnOff={callback}/>
+export const SwitchOn = () => <OnOff onClickOnOff={true} setOnOff={callback}/>
+export const SwitchOff = () => <OnOff onClickOnOff={false} setOnOff={callback}/>
 
 //1) switchOnOff = () => - это компонента, в которую мы добавляем локальный state
-export const switchOnOff = () => {
+export const SwitchOnOff = () => {
     const [on, setOn] = useState<boolean>(false)
     return <OnOff setOnOff={setOn} onClickOnOff={on} />
 }

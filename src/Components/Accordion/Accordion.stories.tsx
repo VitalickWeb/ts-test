@@ -27,8 +27,8 @@ const callbacksProps = {
 }
 
 //Альтернативный синтаксис для компонент
-export const collapsedMode = Template.bind({})
-collapsedMode.args = {
+export const CollapsedMode = Template.bind({})
+CollapsedMode.args = {
     ...callbacksProps,//добавляем деструктуризацию всегда с верху
     title: "click-1",
     setCollapsed: true,
@@ -37,15 +37,15 @@ collapsedMode.args = {
     onClickElem: onClickCallback
 }
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const collapseOpen = () => <Accordion title={"click-2"} setCollapsed={false} setAccordionCollapsed={callback} arrElements={[
+export const CollapseOpen = () => <Accordion title={"click-2"} setCollapsed={false} setAccordionCollapsed={callback} arrElements={[
     {id: v1(), name: "Vit"},
     {id: v1(), name: "react"},
     {id: v1(), name: "JS"},
     {id: v1(), name: "CSS"}
 ]} onClickElem={onClickCallback}/>
 
-//1) collapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
-export const collapseOpenClose = () => {
+//1) CollapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
+export const CollapseOpenClose = () => {
     const [collapsedOnOff, setCollapsedOnOff] = useState<boolean>(false)
 
     const [arrElements, setArrElements] = useState<ArrElementsPropsType[]>([

@@ -18,12 +18,12 @@ const off = "off"
 const callback1 = action(on)
 const callback2 = action(off)
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-export const modeOn = () => {
+export const ModeOn = () => {
     const [onOff, setOnOff] = useState<boolean>(true)
     useEffect(() => {onOff ? callback1() : callback2()},[onOff])
    return <X onOff={onOff} onChange={(value) => {setOnOff(value) } }/>
 }
-export const modeOff = () => {
+export const ModeOff = () => {
     return <X onOff={false} onChange={(value) => { value ? callback1() : callback2() } }/>
 }
 // export const modeOff = () =>  <UncontrolledOnOff defaultMode={false} onChange={(callback2)} />

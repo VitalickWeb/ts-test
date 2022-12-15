@@ -4,9 +4,15 @@ import {PageTitle} from "./Components/PageTitle/PageTitle";
 import {Rating} from "./Components/Raiting/Rating";
 import {OnOff} from "./Components/OnOff/OnOff";
 import {v1} from "uuid";
-import {Select} from "./Components/select/Select";
+import {ArrElemType, Select} from "./Components/select/Select";
+import st from './App.module.css'
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
+
+export type stateType = {
+    data: Array<ArrElemType>,
+    value: string
+}
 
 function App() {
 
@@ -25,9 +31,36 @@ function App() {
     //контролируемый OnOff
     const [onOff, setOnOff] = useState(false)
 
+
+
+    //controlled select
+    const [select, setSelect] = useState<stateType>({data: [
+        {id: v1(), title: "Lithuania"},
+        {id: v1(), title: "Ukraine"},
+        {id: v1(), title: "Canada"},
+        {id: v1(), title: "England"},
+        {id: v1(), title: "Germany"},
+    ],
+        value: "Ukraine",
+    })
+
+    const [onOffSelect, setOnOffSelect] = useState<boolean>(false)
+
+    const onChangeValue = (valueId: string, title: string) => {
+        setSelect({...select, value: title})
+    }
+
     return (
-        <div>
+        <div className={st.container}>
             <PageTitle />
+
+            <Select
+                value={select.value}
+                onChangeValue={onChangeValue}
+                elements={select.data}
+                collapsed={(blur) => setOnOffSelect(blur)}
+                setCollapsed={onOffSelect}
+            />
 
             <Accordion
                 title="Menu"
@@ -45,18 +78,14 @@ function App() {
             {/*    setAccordionCollapsed={() => setAccordionCollapsed(!accordionCollapsed)}*/}
             {/*    setCollapsed={accordionCollapsed}*/}
             {/*/>*/}
-            <Rating
-                setStarValue={(starValue: ChoiceNumber) => setStarValue(starValue)}
-                onClickStar={starValue}
-            />
+            {/*<Rating*/}
+            {/*    setStarValue={(starValue: ChoiceNumber) => setStarValue(starValue)}*/}
+            {/*    onClickStar={starValue}*/}
+            {/*/>*/}
 
             <OnOff
                 setOnOff={ (onOff: boolean) => setOnOff(onOff)}
                 onClickOnOff={onOff}
-            />
-
-            <Select
-
             />
 
             {/*<UncontrolledOnOff*/}

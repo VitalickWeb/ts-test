@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ComponentMeta} from '@storybook/react';
 import {Select} from "./Select";
 import {action} from "@storybook/addon-actions";
-
+import {v1} from "uuid";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,7 +17,7 @@ export default {
     },
 } as ComponentMeta<typeof Select>;
 
-const callback = action("")
+const callback = action("select should be collapsed")
 
 
 // const Template: Story<AccordionPropsType> = (args) => <Select {...args} />;
@@ -36,12 +36,50 @@ const callback = action("")
 //     onClickElem: onClickCallback
 // }
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-// export const collapseOpen = () => <Accordion title={"click-2"} setCollapsed={false} setAccordionCollapsed={callback} arrElements={[
-//     {id: v1(), name: "Vit"},
-//     {id: v1(), name: "react"},
-//     {id: v1(), name: "JS"},
-//     {id: v1(), name: "CSS"}
-// ]} onClickElem={onClickCallback}/>
+export const SelectClosed = () => <Select
+    value={"Select"}
+    onChangeValue={callback}
+    elements={[]}
+    collapsed={() => {}}
+    setCollapsed={false}
+/>
+
+export const SelectOpen = () => <Select
+    value={"Select"}
+    onChangeValue={callback}
+    elements={[
+    {id: v1(), title: "Lithuania"},
+    {id: v1(), title: "Ukraine"},
+    {id: v1(), title: "Canada"},
+    {id: v1(), title: "England"},
+    {id: v1(), title: "Germany"},
+]} setCollapsed={true}
+    collapsed={() => {}}
+/>
+
+export const SelectControlled = () => {
+    const [collapsed, setCollapsed] = useState(false)
+
+    const [controlledSelect, setControlledSelect] = useState({data: [
+            {id: v1(), title: "Lithuania"},
+            {id: v1(), title: "Ukraine"},
+            {id: v1(), title: "Canada"},
+            {id: v1(), title: "England"},
+            {id: v1(), title: "Germany"},
+        ],
+        value: "Select",
+    })
+
+    return <Select
+        value={controlledSelect.value}
+        onChangeValue={(valueId: string, title: string) => setControlledSelect({...controlledSelect, value: title})}
+        elements={controlledSelect.data}
+        collapsed={() => setCollapsed(!collapsed)}
+        setCollapsed={collapsed}
+    />
+}
+
+
 
 //1) collapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
 // export const collapseOpenClose = () => {
