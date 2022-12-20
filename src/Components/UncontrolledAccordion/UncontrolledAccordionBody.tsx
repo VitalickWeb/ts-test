@@ -6,7 +6,6 @@ export type UncontrolledAccordionBodyPropsType = {
 
 export const UncontrolledAccordionBody = ({setCollapsed}: UncontrolledAccordionBodyPropsType) => {
 
-
     return (
         <>
             {!setCollapsed &&

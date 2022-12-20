@@ -6,6 +6,7 @@ import {OnOff} from "./Components/OnOff/OnOff";
 import {v1} from "uuid";
 import {ArrElemType, Select} from "./Components/select/Select";
 import st from './App.module.css'
+import {UncontrolledAccordion} from "./Components/UncontrolledAccordion/UncontrolledAccordion";
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
 
@@ -97,9 +98,9 @@ function App() {
             {/*<UncontrolledRating*/}
 
             {/*/>*/}
-            {/*<UncontrolledAccordion*/}
-            {/*    title="click-2"*/}
-            {/*/>*/}
+            <UncontrolledAccordion
+                title="click-2"
+            />
             {/*<UncontrolledRating*/}
 
             {/*/>*/}

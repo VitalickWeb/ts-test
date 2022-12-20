@@ -66,15 +66,31 @@ export const Select = ({
     }
 
     const onKeyUpHoveredElement = (e: KeyboardEvent<HTMLDivElement>) => {
-        debugger
-        for (let i = 0; i < elements.length; i++) {
-            if (hoveredTitle === elements[i].title) {
-                console.log(elements[i + 1])
-                if (elements[i + 1]) {
-                    onChangeValue(elements[i + 1].id, elements[i + 1].title)
-                    break
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            for (let i = 0; i < elements.length; i++) {
+                if (hoveredTitle === elements[i].title) {
+                    const nextElement = e.key === "ArrowDown"
+                        ? elements[i + 1]
+                        : elements[i - 1];
+
+                    console.log(elements[i + 1])
+                    if (nextElement) {
+                        onChangeValue(elements[i].id, nextElement.title)
+                    }
                 }
             }
+        }
+
+        if (e.key === "Enter") {
+            for (let i = 0; i < elements.length; i++) {
+                if (hoveredTitle === elements[i].title) {
+                    onChangeValue(elements[i].id, elements[i].title)
+                    collapsed(false)
+                }
+            }
+        }
+        if (e.key === "Escape") {
+            collapsed(false)
         }
     }
 
@@ -84,8 +100,8 @@ export const Select = ({
              tabIndex={0}
         >
             <span className={st.widthSelect}
-                  onBlur={onBlurRemoveSelect}
-                  tabIndex={0}
+                  // onBlur={onBlurRemoveSelect}
+                  // tabIndex={0}
             >
                 <div className={st.selectButton}
                      onClick={onclickChangeOpenCloseHandler}

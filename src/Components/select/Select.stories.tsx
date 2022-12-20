@@ -37,7 +37,7 @@ const callback = action("select should be collapsed")
 // }
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 export const SelectClosed = () => <Select
-    value={"Select"}
+    value={"Lithuania"}
     onChangeValue={callback}
     elements={[]}
     collapsed={() => {}}
@@ -45,7 +45,7 @@ export const SelectClosed = () => <Select
 />
 
 export const SelectOpen = () => <Select
-    value={"Select"}
+    value={"Lithuania"}
     onChangeValue={callback}
     elements={[
     {id: v1(), title: "Lithuania"},
@@ -67,7 +67,7 @@ export const SelectControlled = () => {
             {id: v1(), title: "England"},
             {id: v1(), title: "Germany"},
         ],
-        value: "Select",
+        value: "Lithuania",
     })
 
     return <Select
@@ -80,22 +80,4 @@ export const SelectControlled = () => {
 }
 
 
-
-//1) collapseOpenClose = () => - это компонента, в которую мы добавляем локальный state
-// export const collapseOpenClose = () => {
-//     const [collapsedOnOff, setCollapsedOnOff] = useState<boolean>(false)
-//
-//     const [arrElements, setArrElements] = useState<ArrElementsPropsType[]>([
-//         {id: v1(), name: "Vit"},
-//         {id: v1(), name: "react"},
-//         {id: v1(), name: "JS"},
-//         {id: v1(), name: "CSS"},
-//     ])
-//     return <Accordion
-//         title={"Menu"}
-//         setAccordionCollapsed={() => setCollapsedOnOff(!collapsedOnOff)}
-//         setCollapsed={collapsedOnOff} arrElements={arrElements}
-//         onClickElem={onClickCallback}
-//     />
-// }
 
