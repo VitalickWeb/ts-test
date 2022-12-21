@@ -9,6 +9,7 @@ export type StateType = {
     collapsed: boolean
 }
 
+
 export const accordionReducer = (state: StateType , action: ActionsType): StateType => {
     switch (action.type) {
         case TOGGLE_COLLAPSED:

@@ -10,10 +10,10 @@ export const UncontrolledAccordionTitle = ({title, setCollapsed}: UncontrolledAc
 
     return (
         <div>
-            при нажатии на кнопку Title мы диспатчим инструкцию куда то в react, dispatch это функция которая
-            вызывается useReducer, с помощью которой react позволяет нам отправлять в него, команды actions,
-            что бы можно было преобразовать state, стартовое значение которое передается вторым параметром хука
-            useReducer, с помощью первого параметра reducer.
+            {/*при нажатии на кнопку Title мы диспатчим инструкцию куда то в react, dispatch это функция которая*/}
+            {/*вызывается useReducer, с помощью которой react позволяет нам отправлять в него, команды actions,*/}
+            {/*что бы можно было преобразовать state, стартовое значение которое передается вторым параметром хука*/}
+            {/*useReducer, с помощью первого параметра reducer.*/}
             <h3 onClick={() => setCollapsed({type: "TOGGLE-COLLAPSED"})}>{title}</h3>
         </div>
     );

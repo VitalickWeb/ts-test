@@ -97,6 +97,7 @@ export const Select = ({
     return (
         <div className={st.containerSelect}
              onKeyUp={onKeyUpHoveredElement}
+
              tabIndex={0}
         >
             <span className={st.widthSelect}
