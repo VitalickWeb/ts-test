@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {AccordionBody} from "./AccordionBody";
-import {AccordionTitle} from "./AccordionTitle";
+import React from "react";
+import {AccordionBodyTest} from "./AccordionBody";
+import {AccordionTitleTest} from "./AccordionTitle";
 
 export type ArrElementsPropsType = {
     id: string
@@ -19,8 +19,11 @@ export type AccordionPropsType = {
     onClickElem: (value: any) => void
 }
 
+const AccordionTitle = React.memo(AccordionTitleTest)
+const AccordionBody = React.memo(AccordionBodyTest)
+
 export function Accordion({title, setAccordionCollapsed, setCollapsed, color, arrElements, onClickElem}: AccordionPropsType) {
-    console.log()
+    console.log("Accordion")
 
     return (
         <div>

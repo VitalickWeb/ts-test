@@ -9,8 +9,8 @@ export type AccordionTitleType = {
     color?: string
 }
 
-export const AccordionTitle = ({title, setAccordionCollapsed, color}: AccordionTitleType) => {
-    console.log()
+export const AccordionTitleTest = ({title, setAccordionCollapsed, color}: AccordionTitleType) => {
+    console.log("AccordionTitle")
     return (
         <>
             <h3 style={{color: color ? color : "black"}}

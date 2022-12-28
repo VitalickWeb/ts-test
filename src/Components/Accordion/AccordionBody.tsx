@@ -7,8 +7,8 @@ export type AccordionBodyPropsType = {
     onClickElem: (value: any) => void
 }
 
-export const AccordionBody = ({setCollapsed, arrElements, onClickElem}: AccordionBodyPropsType) => {
-    console.log()
+export const AccordionBodyTest =({setCollapsed, arrElements, onClickElem}: AccordionBodyPropsType) => {
+    console.log("AccordionBody")
     const renderArrElem = arrElements.map(el => {
 
         const clickElemHandler = () => {
