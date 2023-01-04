@@ -23,7 +23,6 @@ const AccordionTitle = React.memo(AccordionTitleTest)
 const AccordionBody = React.memo(AccordionBodyTest)
 
 export function Accordion({title, setAccordionCollapsed, setCollapsed, color, arrElements, onClickElem}: AccordionPropsType) {
-    console.log("Accordion")
 
     return (
         <div>

@@ -8,12 +8,22 @@ import {ArrElemType, Select} from "./Components/select/Select";
 import st from './App.module.css'
 import {UncontrolledAccordion} from "./Components/UncontrolledAccordion/UncontrolledAccordion";
 import {SelectUseMemo} from "./Components/ExampleUseMemo/SelectUseMemo";
+import {citiesType} from "./Components/ExampleUseMemo/SelectFilterByLetterM";
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
 
 export type stateType = {
     data: Array<ArrElemType>,
     value: string
+}
+
+export type CountriesType = {
+    id: string,
+    country: string
+}
+
+export type CitiesStateType = {
+    [countriesID: string]: Array<citiesType>
 }
 
 function App() {
@@ -25,15 +35,12 @@ function App() {
         {id: v1(), name: "Many People"},
     ])
 
-    console.log()
     //контролируемый аккордеон
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
     //контролируемый rating
     const [starValue, setStarValue] = useState<ChoiceNumber>(0)
     //контролируемый OnOff
     const [onOff, setOnOff] = useState(false)
-
-
 
     //controlled select
     const [select, setSelect] = useState<stateType>({data: [
@@ -45,37 +52,50 @@ function App() {
     ],
         value: "Ukraine",
     })
-
     const [onOffSelect, setOnOffSelect] = useState<boolean>(false)
-
     const onChangeValue = (valueId: string, title: string) => {
         setSelect({...select, value: title})
     }
 
     //##########################################################################################
 
-    const [country, setCountry] = useState<string>('')
-    const [selects, setSelects] = useState([
-        {id: 1,
-            country: 'Belarus',
-            cities: ['Minsk', "Brest", "Grodno"],
-            citizen: 9000000,
-        },
-        {id: 2,
-            country: 'Ukraine',
-            cities: ['Kiev', "Mariupol", "Azov"],
-            citizen: 40000000,
-        },
-        {id: 3,
-            country: 'Germany',
-            cities: ['Berlin', "Koln", "Munich"],
-            citizen: 80000000,
-        },
+    let countriesID1 = v1()
+    let countriesID2 = v1()
+    let countriesID3 = v1()
+
+    const [countries, setCountries] = useState<Array<CountriesType>>([
+        {id: countriesID1, country: 'Belarus'},
+        {id: countriesID2, country: 'Ukraine'},
+        {id: countriesID3, country: 'Germany'},
     ])
+
+    const [cities, setOptions] = useState<CitiesStateType>({
+        [countriesID1]: [
+            {id: v1(), city: 'Minsk', citizens: 2000000},
+            {id: v1(), city: 'Brest', citizens: 1000000},
+            {id: v1(), city: 'Grodno', citizens: 1000000},
+        ],
+        [countriesID2]: [
+            {id: v1(), city: 'Kiev', citizens: 2000000},
+            {id: v1(), city: 'Mariupol', citizens: 3000000},
+            {id: v1(), city: 'Azov', citizens: 4000000},
+        ],
+        [countriesID3]: [
+            {id: v1(), city: 'Berlin', citizens: 4000000},
+            {id: v1(), city: 'Koln', citizens: 3000000},
+            {id: v1(), city: 'Munih', citizens: 5000000},
+        ],
+    })
 
     return (
         <div className={st.container}>
             <PageTitle />
+            <hr/>
+
+            <SelectUseMemo
+                countries={countries}
+                cities={cities}
+            />
 
             <Select
                 value={select.value}
@@ -126,8 +146,9 @@ function App() {
             {/*<UncontrolledRating*/}
 
             {/*/>*/}
-            <hr/>
-            <SelectUseMemo />
+
+
+
         </div>
     );
 }

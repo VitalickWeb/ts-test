@@ -10,7 +10,7 @@ export type AccordionTitleType = {
 }
 
 export const AccordionTitleTest = ({title, setAccordionCollapsed, color}: AccordionTitleType) => {
-    console.log("AccordionTitle")
+
     return (
         <>
             <h3 style={{color: color ? color : "black"}}
