@@ -160,19 +160,15 @@ export const LikeUseCallback = () => {
     const [count, setCount] = useState(0)
     const [books, setBooks] = useState(["React", "Redux", "JS", "CSS"])
 
-    const newArray = useMemo(() => {
-        return () => {
-            books.filter(b => b.indexOf('i') > -1)
-        }
-    }, [books])
+    // const newArray = useMemo(() => {
+    //     return () => {
+    //         books.filter(b => b.indexOf('i') > -1)
+    //     }
+    // }, [books])
 
     //1)по факту мемоизации происходит создание функции addBook и запоминание ее до тех пор, пока у не изменится объект books
     // после выкидывает нам ее на ружу версию которую она запомнила. И теперь закэшированную эту версию будет засовывать в
     //компоненту Books
-    const addBook = () => {
-        let book = "HTML " + new Date().getDate()
-        setBooks([...books, book])
-    }
 
     const memoizedAddBook = useMemo(() => {
         return () => {
