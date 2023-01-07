@@ -9,6 +9,7 @@ import st from './App.module.css'
 import {UncontrolledAccordion} from "./Components/UncontrolledAccordion/UncontrolledAccordion";
 import {SelectUseMemo} from "./Components/ExampleUseMemo/SelectUseMemo";
 import {citiesType} from "./Components/ExampleUseMemo/SelectFilterByLetterM";
+import {Clock} from "./Components/Clock/Clock";
 
 export type ChoiceNumber = 0 | 1 | 2 | 3 | 4 | 5
 
@@ -91,6 +92,8 @@ function App() {
         <div className={st.container}>
             <PageTitle />
             <hr/>
+
+            <Clock />
 
             <SelectUseMemo
                 countries={countries}

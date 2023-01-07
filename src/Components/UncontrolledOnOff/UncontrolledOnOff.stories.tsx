@@ -10,7 +10,7 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} ;
+};
 
 const on = "on"
 const off = "off"
