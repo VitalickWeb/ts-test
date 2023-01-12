@@ -1,0 +1,142 @@
+.clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: slategray;
+    width: 100%;
+    min-height: 50vh;
+
+}
+.analogClock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.analogClock img {
+    width: 180px;
+    height: 180px;
+    border: 2px solid #333;
+    border-radius: 50%;
+}
+
+.analogClock::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #333333;
+    z-index: 111;
+}
+
+.analogClock .hour {
+    position: absolute;
+}
+/*див hours внутри которого будет лежать псевдоэлемент и внутри него будет позиционирован*/
+.analogClock .hour .hours {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.analogClock .hour .hours::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 70px;
+    top: 19px;
+    border-radius: 2px 2px 0 0;
+    background-color: rgb(216, 23, 51);
+    z-index: 10;
+}
+
+.analogClock .minute {
+    position: absolute;
+}
+/*див minute внутри которого будет лежать псевдоэлемент и внутри него будет позиционирован*/
+.analogClock .minute .minutes {
+    width: 190px;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.analogClock .minute .minutes::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 80px;
+    top: 27px;
+    border-radius: 3px 3px 0 0;
+    background-color: rgb(6, 2, 2);
+    z-index: 11;
+}
+
+.analogClock .second {
+    position: absolute;
+}
+/*див second внутри которого будет лежать псевдоэлемент и внутри него будет позиционирован*/
+.analogClock .second .seconds {
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.analogClock .second .seconds::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 92px;
+    top: 42px;
+    border-radius: 6px 6px 0 0;
+    background-color: rgb(238, 169, 9);
+    z-index: 12;
+}
+
+.clock .digitalClockOutside {
+    background-color: #555555;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid gold;
+    border-radius: 50%;
+}
+
+.clock .digitalClockInside {
+    background-color: silver;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 28px;
+    border-radius: 5px;
+}
+
+.clock .digit {
+    font-size: 24px;
+    line-height: 10px;
+    color: #ff2d58;
+}
+.clock .twoDotes {
+    font-size: 24px;
+    line-height: 10px;
+    color: #ff2d58;
+    margin: 0 2px 0 2px;
+}
+
+.buttonMode button {
+    min-width: 102px;
+    margin-left: 10px;
+    border: 1px solid #333;
+    border-radius: 3px;
+
+}
