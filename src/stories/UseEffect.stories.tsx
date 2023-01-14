@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {KeyboardEvent, useEffect, useState} from 'react';
 //значение, которое меняется в useState всегда содержится в хранилище react
 
 export default {
@@ -20,7 +20,7 @@ const generateCount = () => {
 //4)запускается callback функция, которая передается в useEffect. То-есть сначала происходит отрисовка контента,
 // а потом только запускается UseEffect!!!
 export const ExampleUseEffect = () => {
-    console.log("ExampleUseEffect")
+    // console.log("ExampleUseEffect")
     const [fake, setFake] = useState<number>(generateCount)
     const [count, setCount] = useState<number>(generateCount)// [0, setCount(newValue) {}]
     //при клике на добавление счетчика идет перерисовка useEffect - такое иногда бывает нужно для
@@ -28,7 +28,7 @@ export const ExampleUseEffect = () => {
 
     useEffect(() => {
         //В данном случае при каждой перерисовке useEffect срабатывает
-        console.log("useEffect every render")
+        // console.log("useEffect every render")
         document.title = count.toString()//изменение title заголовка
         //api.getUsers.then('')
         //setInterval
@@ -38,14 +38,14 @@ export const ExampleUseEffect = () => {
 
     useEffect(() => {
         //В данном случае срабатывает только один раз когда компонента вмонтировалась
-        console.log("useEffect only first render (componentDidMount)")
+        // console.log("useEffect only first render (componentDidMount)")
         document.title = count.toString()//изменение title заголовка
     }, [])
 
     useEffect(() => {
         //Если в зависимость что-то передаем, например fake отрисует после первого рендера и когда
         //fake поменяется
-        console.log("useEffect every render and fake change")
+        // console.log("useEffect every render and fake change")
         document.title = count.toString()//изменение title заголовка
     }, [fake])
 
@@ -70,7 +70,7 @@ let addZero = (num: number) => {
 }
 
 export const ExampleSetTimeOut = () => {
-    console.log("ExampleSetTimeOut")
+    // console.log("ExampleSetTimeOut")
     const [date, setDate] = useState(new Date())
     const [count, setCount] = useState<number>(generateCount)// [0, setCount(newValue) {}]
 
@@ -79,7 +79,7 @@ export const ExampleSetTimeOut = () => {
         // console.log("click")
         //setTimeout используется для задержки какого нибудь события
         setTimeout(() => {
-            console.log("click")
+            // console.log("click")
             document.title = count.toString()//изменение title заголовка
         }, 1000)
         //Чаще всего зависимости будут зависеть от пропсов либо от локального стэйта
@@ -94,9 +94,120 @@ export const ExampleSetTimeOut = () => {
     return (
         <>
             <button onClick={() => {setCount(state => state + 1)}}>{"count+"}</button>
-            {/*<button onClick={() => {setTimer(state => state + 1)}}>{"timer+"}</button>*/}
             <span>{count} </span>
             <span>Clock: {addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ':' + addZero(date.getSeconds())}</span>
+        </>
+    );
+}
+
+
+//##############################################################################################################
+
+export const  ResetEffectExample = () => {
+    const [count, setCount] = useState(1)
+//если мы не увеличиваем счетчик, то 1)идет просто отрисовка компоненты
+    console.log('component rendered ' + count)
+
+//     useEffect(() => {
+//         //setCount(count1 => count1 + 1)
+// //2)effect произошел.
+//         console.log('effect occurred')
+//         //Для того что бы сбросить эффект callback мы должны вернуть другую функцию, которая будет сбрасывать этот callback.
+//         return () => {
+//             //функция которая должна сбросить эффект выполняется когда компонента умирает
+//             //либо перед очередным вызовом эффекта
+//             //компонента умрет как только мы перейдем на другую страницу
+//             //тогда вызовется сброс этого эффекта callback
+//             console.log('CLEAN CALLBACK')
+//         }
+//     }, [])
+
+
+    useEffect(() => {
+        console.log('effect occurred ' + count)
+        //последовательность рендера
+        //1)component отрендерился изменился локальный state, react запустил компоненту снова так как локальный state изменился
+        //2) он зарегистрировал эффект потому что изменился counter и отрендерил актуальную картинку
+        //3) потом запускает снова useEffect но перед тем как его запустить зачистит старый эффект
+        return () => {
+            console.log('CLEAN CALLBACK ' + count)
+        }
+    }, [count])
+
+    return (
+        <div>
+            1) При каждом нажатии на кнопку инкримента, будет рисоватся компонент заново
+            так как state изменился в компоненте, значит react хочет отрисовать новый jsx,
+            потому что на основе локального state всегда зависит отрисовка jsx
+            но эффект происходить не будет потому что в зависимости useEffect пустой массив
+            и наш эффект ни от чего не зависит
+            2) Если уберем зависимость из хука useEffect то эффект будет отрисовываться
+            каждый рендер
+            <button onClick={() => setCount(count + 1)}> +</button><span> {count}</span>
+        </div>
+    );
+}
+
+
+//###############################################################################################################
+//Нам нужно отслеживать какие клавиши нажимаются за пределами компоненты, для этого нам нужно отслеживать события
+//которые не контролируются react конкретно нами нашей компонентой, для этого мы обращаемся в компоненте на прямую
+//через window. Например мы хотим отслеживать внешний скрол, или наша компонента показала менюшку и мы хотим при клике
+//за пределами этой менюшки, закрыть эту менюшку. Вообщем иногда нужно знать что происходит за пределами компоненты,
+//какое событие. Для этого можно семло использовать нативный слушатель событий addEventListener.
+
+export const KeysTrackerExample = () => {
+
+    const [text, setText] = useState<string>('')
+
+    console.log("ExampleUseEffect" +text)
+
+    useEffect(() => {
+        //функция создастся один раз как и useEffect
+
+            //текст будет брать из замыкания, а значит текст будет выдавать всегда пустую строку
+                //поэтому текст будет всегда набираться один раз, то есть одна буква будет меняться на другую.
+                //В этом случае становится понятно что useEffect у нас зависит от переменной в useState text и нужно поместить
+                //эту переменнную в массив зависимости.
+                //Или избавить эту функцию от зависимости и сказать что ты внутри этой функции ни от чего не зависишь,
+                //просто заменив state на функцию преобразователь  setText((state) => state + e.key)
+
+                //Если начать печатать буквы вне компоненты, то компонента наша это не отслеживает, видимо из-за перехвата события
+                //и его блокировки. То есть там подписка события произошла первей и всплытие события они блокируют и событие не
+                // всплывает и мы этого не видим, потому что они в этой компоненте заблокировали всплытие событий, а мы подписались
+                // именно на window, поэтому всплытие должно быть до конца, если оно не заблокировано.
+
+                //Когда мы уходим с нашей компоненты на другую компоненту, то по идее не должно отслеживаться событие,
+                //потому что компонента которая должна была отслеживать событие умерла, но при наборе клавишами, консоль лог срабатывает
+                //продалжается попытка сетать state но реакт хочет убить компоненту но не может убить функцию сallback в useEffect и
+                // происходит утечка памяти.
+                //Если мы допустим по пять раз по переключаемся по другим компонентам, то при одном нажатии на клавишу мы
+                // подпишемся 5 раз на одно и тоже. Поэтому мы должны избавится от мусора, который остается после того как
+                // компонента умирает и пишем return и передаем вторым парамметром туже функцию, которая использовалась в подписке
+                //для этого важно иметь использовать ссылку, которую можно использовать в двух местах, во время подписки и отписки.
+        // const handler = (e: KeyboardEvent) => {
+        //     console.log(e.key)
+        //     setText((state) => state + e.key)
+        // }
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key)
+            setText(text + e.key)
+        }
+        window.addEventListener('keypress', handler)
+
+        return () => {
+            window.removeEventListener('keypress', handler);
+        }
+        //Если нам нужно чтобы замыкание срабатывало, то в место функции в массив зависимости мы поместим значение State
+        //эта зависимость говорит, что перезапускай каждый раз useEffect когда текст меняется
+        //1)нажав клавишу засетаем state, 2)эффект перезапустится и в state будет новое значение. При этом
+        //так же нужно проводить зачистку иначе накапливается мусор, так как эффект срабатывает при каждом изменении текста
+        //
+    }, [text])
+
+    return (
+        <>
+            <div><span>Typed text: </span>{text}</div>
         </>
     );
 }
